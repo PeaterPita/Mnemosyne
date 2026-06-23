@@ -6,6 +6,8 @@ interface Props {
 
 const { title, description = "PeaterPita.com | Blogging & Portfolio" } =
     Astro.props;
+
+import Footer from "../components/Footer.astro";
 ---
 
 <html lang="en">
@@ -24,6 +26,9 @@ const { title, description = "PeaterPita.com | Blogging & Portfolio" } =
         <title>{title}</title>
     </head>
     <body>
-        <slot />
+        <main>
+            <slot />
+        </main>
+        <Footer />
     </body>
 </html>
