@@ -8,6 +8,7 @@ const { title, description = "PeaterPita.com | Blogging & Portfolio" } =
     Astro.props;
 
 import Footer from "../components/Footer.astro";
+import "../styles/global.css";
 ---
 
 <html lang="en">
@@ -26,9 +27,19 @@ import Footer from "../components/Footer.astro";
         <title>{title}</title>
     </head>
     <body>
-        <main>
+        <div class="content">
             <slot />
-        </main>
+        </div>
         <Footer />
     </body>
 </html>
+
+<style>
+    .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+</style>
