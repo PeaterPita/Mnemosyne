@@ -1,13 +1,32 @@
 :root {
     --primary: #04060c;
     --primary2: #070b14;
+
     --text: #c9d1e0;
-    --accent: #c9a35c
+    --muted: #8590a6;
+
+    --accent: #c9a35c;
+    --accent-light: #e8c87e
 }
+
+
+
+
+
 
 
 
 body {
     background: var(--primary2);
     color: var(--text);
+}
+
+
+a {
+    color: var(--accent);
+    text-underline-offset: 4px;
+}
+
+a:hover {
+    color: var(--accent-light);
 }
