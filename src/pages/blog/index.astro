@@ -1,0 +1,26 @@
+---
+import { getCollection } from "astro:content";
+import MainLayout from "../../layouts/MainLayout.astro";
+
+const blogs = await getCollection("blogs");
+---
+
+<MainLayout title="The Archives">
+    <header>
+        <h1>The Archives</h1>
+    </header>
+
+    <main>
+        {
+            blogs.map((blog) => (
+                <li>
+                    <a href={`/blog/${blog.id}`}>
+                        <time datetime={blog.data.date.toISOString()} />
+                        <span>{blog.data.title}</span>
+                        <span>{blog.data.description}</span>
+                    </a>
+                </li>
+            ))
+        }
+    </main>
+</MainLayout>
