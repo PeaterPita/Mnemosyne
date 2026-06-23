@@ -1,17 +1,9 @@
 ---
-
+import MainLayout from "../layouts/MainLayout.astro";
 ---
 
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="viewport" content="width=device-width" />
-        <meta name="generator" content={Astro.generator} />
-        <title>Portfolio</title>
-    </head>
-    <body
+<MainLayout title="Home">
+    <div
         style={{
             display: "flex",
             justifyContent: "center",
@@ -20,5 +12,5 @@
         }}
     >
         <h1 style="font-size:1.5rem;">🚧 Under Construction 🚧</h1>
-    </body>
-</html>
+    </div>
+</MainLayout>

@@ -1,0 +1,29 @@
+---
+interface Props {
+    title: string;
+    description?: string;
+}
+
+const { title, description = "PeaterPita.com | Blogging & Portfolio" } =
+    Astro.props;
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <meta name="description" content={description} />
+        <script
+            is:inline
+            defer
+            src="https://analytics.peaterpita.com/umami.js"
+            data-website-id="fbc0eecc-3d97-43d4-9c1b-62b575dd9569"></script>
+        <title>{title}</title>
+    </head>
+    <body>
+        <slot />
+    </body>
+</html>
