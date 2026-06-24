@@ -1,11 +1,27 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+
+import About from "../sections/About.astro";
+import Blogs from "../sections/Blogs.astro";
+import Contact from "../sections/Contact.astro";
+import Projects from "../sections/Projects.astro";
 ---
 
 <MainLayout title="Home">
-    <div>
+    <div
+        style="height:100vh; display:flex; align-items:center; justify-content:center;"
+    >
         <h1 style="font-size:1.5rem; color:var(--accent)">
             🚧 Under Construction 🚧
         </h1>
     </div>
+
+    <main>
+        <div>
+            <About />
+            <Blogs />
+            <Projects />
+            <Contact />
+        </div>
+    </main>
 </MainLayout>
