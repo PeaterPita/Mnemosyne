@@ -27,19 +27,7 @@ import "../styles/global.css";
         <title>{title}</title>
     </head>
     <body>
-        <div class="content">
-            <slot />
-        </div>
+        <slot />
         <Footer />
     </body>
 </html>
-
-<style>
-    .content {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
-</style>
