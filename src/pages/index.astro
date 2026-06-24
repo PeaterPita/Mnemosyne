@@ -1,6 +1,8 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 
+import Divider from "../components/Divider.astro";
+
 import Hero from "../sections/Hero.astro";
 import About from "../sections/About.astro";
 import Blogs from "../sections/Blogs.astro";
@@ -13,8 +15,11 @@ import Projects from "../sections/Projects.astro";
         <Hero />
         <div>
             <About />
+            <Divider />
             <Blogs />
+            <Divider />
             <Projects />
+            <Divider />
             <Contact />
         </div>
     </main>
