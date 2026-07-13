@@ -2,6 +2,8 @@
 import { getCollection, render } from "astro:content";
 import MainLayout from "../../layouts/MainLayout.astro";
 
+import { dateFormat } from "../../utils.ts";
+
 export async function getStaticPaths() {
     const blogs = await getCollection("blogs");
     return blogs.map((blog) => ({
@@ -15,5 +17,37 @@ const { Content } = await render(blog);
 ---
 
 <MainLayout title={blog.data.title}>
-    <Content />
+    <article>
+        <header>
+            <a href="/blog/" class="back">&larr; the archives</a>
+            <h1>{blog.data.title}</h1>
+            <div class="meta">
+                <time datetime={blog.data.date.toISOString()}>
+                    {dateFormat(blog.data.date)}
+                </time>
+                <p>Read Length:</p>
+                <div class="entry-tags">
+                    {
+                        blog.data.tags.map((tag) => (
+                            <span class="tag">{tag}</span>
+                        ))
+                    }
+                </div>
+            </div>
+        </header>
+        <div class="content">
+            <Content />
+        </div>
+    </article>
 </MainLayout>
+
+<style>
+
+
+
+
+
+
+
+
+</style>

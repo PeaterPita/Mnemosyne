@@ -1,26 +1,63 @@
 ---
 import { getCollection } from "astro:content";
 import MainLayout from "../../layouts/MainLayout.astro";
+import { constellations } from "../../data/constellations";
+import BlogLineItem from "../../components/BlogLineItem.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+import Tag from "../../components/Tag.astro";
 
 const blogs = await getCollection("blogs");
+
+const tags = [...new Set(blogs.flatMap((blog) => blog.data.tags))];
+
+const grouped = constellations.map((constellation) => ({
+    constellation,
+    blogs: blogs
+        .filter((blog) => blog.data.constellation === constellation.name)
+        .sort((a, b) => +b.data.date - +a.data.date),
+}));
 ---
 
 <MainLayout title="The Archives">
     <header>
-        <h1>The Archives</h1>
+        <a href="/"> &larr; Return to the observatory</a>
+        <SectionHeader
+            title="The Archives"
+            ,
+            kicker=`THE COMPLETE CATALOGUE - ${blogs.length} STARS RECORDED`
+        />
     </header>
 
     <main>
+        <div class="filters">
+            {tags.map((tag) => <Tag content={tag} />)}
+        </div>
+
         {
-            blogs.map((blog) => (
-                <li>
-                    <a href={`/blog/${blog.id}`}>
-                        <time datetime={blog.data.date.toISOString()} />
-                        <span>{blog.data.title}</span>
-                        <span>{blog.data.description}</span>
-                    </a>
-                </li>
+            grouped.map(({ constellation, blogs }) => (
+                <section class="group">
+                    <header class="group-head">
+                        <div>
+                            <h2>{constellation.name}</h2>
+                            <p class="group-label" />
+                        </div>
+                    </header>
+
+                    <ul>
+                        {blogs.length === 0 && <li> No Entries found!</li>}
+                        {blogs.map((blog) => (
+                            <BlogLineItem {blog} />
+                        ))}
+                    </ul>
+                </section>
             ))
         }
     </main>
 </MainLayout>
+
+<style>
+    .group-head {
+        display: flex;
+        align-items: center;
+    }
+</style>
