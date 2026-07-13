@@ -5,10 +5,16 @@ import { constellations } from "../../data/constellations";
 import ConstellationList from "../../components/ConstellationList.astro";
 import BlogCard from "../../components/BlogCard.astro";
 import SectionHeader from "../../components/SectionHeader.astro";
+import FilterBar from "../../components/FilterBar.astro";
 
 const blogs = await getCollection("blogs");
 
-const tags = [...new Set(blogs.flatMap((blog) => blog.data.tags))];
+const tags = blogs
+    .flatMap((blog) => blog.data.tags)
+    .reduce((accumulated, tag) => {
+        accumulated[tag] = (accumulated[tag] || 0) + 1;
+        return accumulated;
+    }, {});
 
 const grouped = constellations.map((constellation) => ({
     constellation,
@@ -26,6 +32,8 @@ const grouped = constellations.map((constellation) => ({
             title="The Archives"
             kicker=`THE COMPLETE CATALOGUE - ${blogs.length} STARS RECORDED`
         />
+
+        <FilterBar {tags} />
 
         <div class="grid">
             {
