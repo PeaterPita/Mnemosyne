@@ -39,4 +39,11 @@ const { tags } = Astro.props;
     .tag-button:hover {
         border-color: var(--accent);
     }
+
+    .tag-button[aria-pressed="true"] {
+        color: var(--primary);
+        font-weight: 600;
+        background: var(--accent);
+        border-color: var(--accent-light);
+    }
 </style>

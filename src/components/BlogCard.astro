@@ -4,7 +4,12 @@ const { blog } = Astro.props;
 import { dateFormat } from "../utils";
 ---
 
-<a href=`/blog/${blog.id}` class="card">
+<a
+    href=`/blog/${blog.id}`
+    data-post
+    data-tags={blog.data.tags.join(" ")}
+    class="card"
+>
     <time class="card-date" datetime={blog.data.date.toISOString()}>
         {dateFormat(blog.data.date)}
     </time>
@@ -22,6 +27,9 @@ import { dateFormat } from "../utils";
         border: 1px solid var(--line);
         background: none;
         transition: all 0.3s ease;
+    }
+    .card[hidden] {
+        display: none;
     }
 
     .card:hover {

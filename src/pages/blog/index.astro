@@ -57,3 +57,29 @@ const grouped = constellations.map((constellation) => ({
         align-items: start;
     }
 </style>
+
+<script>
+    const tagButtons = [...document.querySelectorAll("[data-tag]")];
+    const blogs = [...document.querySelectorAll<HTMLElement>("[data-post]")];
+
+    const active = new Set<string>();
+
+    function apply() {
+        for (const blog of blogs) {
+            console.log(blog.dataset.tags);
+            const tags = (blog.dataset.tags ?? "").split(" ").filter(Boolean);
+            const show =
+                active.size === 0 || [...active].some((t) => tags.includes(t));
+            blog.hidden = !show;
+        }
+    }
+
+    for (const btn of tagButtons) {
+        btn.addEventListener("click", () => {
+            const tag = btn.dataset.tag ?? "";
+            active.has(tag) ? active.delete(tag) : active.add(tag);
+            btn.setAttribute("aria-pressed", String(active.has(tag)));
+            apply();
+        });
+    }
+</script>
