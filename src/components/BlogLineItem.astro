@@ -1,0 +1,95 @@
+---
+const { blog } = Astro.props;
+
+import { dateFormat } from "../utils.ts";
+import Tag from "./Tag.astro";
+---
+
+<li>
+    <a href={`/blog/${blog.id}`} class="entry">
+        <div class="entry-body">
+            <div class="entry-meta">
+                <time datetime={blog.data.date.toISOString()}>
+                    {dateFormat(blog.data.date)}
+                </time>
+                <div class="entry-tags">
+                    {blog.data.tags.map((tag) => <Tag content={tag} />)}
+                </div>
+            </div>
+            <span class="entry-title">{blog.data.title}</span>
+            <span class="entry-description">
+                {blog.data.description}
+            </span>
+        </div>
+        <span class="entry-arrow">&rarr;</span>
+    </a>
+</li>
+
+<style>
+    .entry {
+        display: flex;
+        align-items: baseline;
+        gap: 1.2rem;
+        padding: 1.5rem 0.6rem;
+        border-bottom: 1px solid var(--line);
+        align-items: center;
+        text-decoration: none;
+        transition: background 0.2s ease;
+    }
+
+    .entry:hover {
+        /* background: rgba(201, 163, 92, 0.04); */
+        background: rgb(from var(--accent-light) r g b / 0.1);
+    }
+
+    .entry-body {
+        flex: 1;
+    }
+
+    .entry-meta {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        margin-bottom: 0.6rem;
+        font-size: 0.7rem;
+        letter-spacing: 0.18em;
+        color: var(--muted);
+    }
+
+    .entry-title {
+        display: block;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--text);
+        line-height: 1.25;
+        margin: 0.35rem;
+    }
+
+    .entry-description {
+        display: block;
+        color: var(--muted);
+    }
+
+    .entry-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .entry-arrow {
+        color: var(--accent);
+        flex-shrink: 0;
+        font-size: 1.8rem;
+
+        transition: all 0.3s ease;
+    }
+
+    .entry:hover .entry-title {
+        color: #fff;
+    }
+
+    .entry:hover .entry-arrow {
+        color: var(--accent-lgiht);
+        transform: translateX(5px);
+    }
+</style>

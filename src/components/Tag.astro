@@ -1,0 +1,22 @@
+---
+const { content } = Astro.props;
+---
+
+<span class="tag">{content}</span>
+
+<style>
+    .tag {
+        color: var(--text);
+        font-size: 0.6rem;
+        border-radius: 30%;
+        border: 1px solid var(--accent);
+        background-color: rgb(from var(--accent-light) r g b / 0.15);
+        padding: 0.4rem;
+
+        transition: all 0.3 ease-in-out;
+    }
+
+    .tag:hover {
+        background-color: rgb(from var(--accent-light) r g b / 0.3);
+    }
+</style>
