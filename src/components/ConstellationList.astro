@@ -5,19 +5,38 @@ const { constellation } = Astro.props;
 <section class="group">
     <header class="group-head">
         <div>
-            <h2>{constellation.name}</h2>
+            <h2 class="group-name">{constellation.name}</h2>
             <p class="group-label">{constellation.label}</p>
         </div>
     </header>
 
-    <ul class="group-content">
+    <div class="group-content">
         <slot />
-    </ul>
+    </div>
 </section>
 
 <style>
+    .group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1.25rem;
+    }
+
     .group-head {
         display: flex;
         align-items: center;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .group-name {
+        margin: 0;
+        text-transform: uppercase;
+        color: var(--text);
+    }
+
+    .group-label {
+        color: var(--muted);
+        font-size: 0.8rem;
     }
 </style>

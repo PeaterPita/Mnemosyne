@@ -4,13 +4,15 @@
 
 
 export const constellations = [
+    // Homelab
     {
-        name: "Testing",
-        label: "Hello"
+        name: "Fornax",
+        label: "Homelabbing Adventures"
     },
 
+    // Travel
     {
-        name: "Testing2",
-        label: "Hello"
+        name: "Vela",
+        label: "Travel & Field Notes"
     }
 ]
