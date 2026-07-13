@@ -1,0 +1,23 @@
+---
+const { constellation } = Astro.props;
+---
+
+<section class="group">
+    <header class="group-head">
+        <div>
+            <h2>{constellation.name}</h2>
+            <p class="group-label">{constellation.label}</p>
+        </div>
+    </header>
+
+    <ul class="group-content">
+        <slot />
+    </ul>
+</section>
+
+<style>
+    .group-head {
+        display: flex;
+        align-items: center;
+    }
+</style>

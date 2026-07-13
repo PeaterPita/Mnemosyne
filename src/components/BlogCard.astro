@@ -1,0 +1,64 @@
+---
+const { blog } = Astro.props;
+
+import { dateFormat } from "../utils";
+---
+
+<a href=`/blog/${blog.id}` class="card">
+    <time class="card-date" datetime={blog.data.date.toISOString()}>
+        {dateFormat(blog.data.date)}
+    </time>
+    <h3 class="card-title">{blog.data.title}</h3>
+    <p class="card-description">{blog.data.description}</p>
+</a>
+
+<style>
+    .card {
+        display: flex;
+        text-decoration: none;
+        flex-direction: column;
+        gap: 0.3rem;
+        padding: 1.25rem;
+        border: 1px solid var(--line);
+        background: none;
+        transition: all 0.3s ease;
+    }
+
+    .card:hover {
+        border-color: var(--accent);
+        background: rgb(from var(--accent-light) r g b / 0.15);
+    }
+
+    .card-date {
+        font-size: 0.6rem;
+        text-transform: uppercase;
+        color: var(--muted);
+    }
+
+    .card-title {
+        margin: 0;
+        font-size: 1.3rem;
+        font-weight: 600;
+        line-height: 1.25;
+        color: var(--text);
+    }
+
+    .card:hover .card-title {
+        color: var(--accent);
+    }
+
+    .card-description {
+        margin: 0;
+        font-size: 0.8rem;
+        color: var(--muted);
+    }
+
+    .card-tags {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin: 0;
+        padding: 0;
+    }
+</style>

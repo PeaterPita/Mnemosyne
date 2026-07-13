@@ -5,10 +5,12 @@
 
 export const constellations = [
     {
-        name: "Testing"
+        name: "Testing",
+        label: "Hello"
     },
 
     {
-        name: "Testing2"
+        name: "Testing2",
+        label: "Hello"
     }
 ]
