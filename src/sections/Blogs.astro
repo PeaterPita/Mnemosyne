@@ -11,9 +11,9 @@ const blogs = (await getCollection("blogs"))
 <section>
     <SectionHeader kicker="The Archives" title="Recent Entries" />
 
-    <ol class="blog-entries">
+    <div class="blog-entries">
         {blogs.map((blog) => <BlogLineItem {blog} />)}
-    </ol>
+    </div>
 
     <p class="more">
         <a href="/blog/">Browse the complete archives &rarr;</a>
