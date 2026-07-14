@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import MainLayout from "../../layouts/MainLayout.astro";
+import Tag from "../../components/Tag.astro";
 
 import { dateFormat } from "../../utils.ts";
 
@@ -14,25 +15,27 @@ export async function getStaticPaths() {
 
 const blog = Astro.props;
 const { Content } = await render(blog);
+
+const words = blog.body?.split(/\s+/).filter(Boolean).length ?? 0;
+const readingTime = Math.max(1, Math.round(words / 180));
 ---
 
 <MainLayout title={blog.data.title}>
-    <article>
-        <header>
-            <a href="/blog/" class="back">&larr; the archives</a>
+    <article class="entry">
+        <header class="entry-header">
+            <a href="/blog/" class="back">&larr;</a>
             <h1>{blog.data.title}</h1>
+            <p>{blog.data.description}</p>
             <div class="meta">
                 <time datetime={blog.data.date.toISOString()}>
                     {dateFormat(blog.data.date)}
                 </time>
-                <p>Read Length:</p>
-                <div class="entry-tags">
-                    {
-                        blog.data.tags.map((tag) => (
-                            <span class="tag">{tag}</span>
-                        ))
-                    }
-                </div>
+
+                <ul class="tags">
+                    {blog.data.tags.map((tag) => <Tag content={tag} />)}
+                </ul>
+
+                <p>Read Length: {readingTime}m</p>
             </div>
         </header>
         <div class="content">
@@ -42,12 +45,114 @@ const { Content } = await render(blog);
 </MainLayout>
 
 <style>
+    .entry {
+        margin: 0 auto;
+    }
 
+    h1 {
+        color: var(--accent);
+        font-size: 3rem;
+        margin-bottom: -1rem;
+    }
 
+    .back {
+        position: absolute;
+        left: 1.5rem;
+        top: 0.5rem;
+        font-size: 1.8rem;
+        text-decoration: none;
+    }
 
+    .entry-header {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        align-items: center;
+        width: 60%;
+        margin: 0 auto;
+        background-color: var(--primary);
+        border: 3px solid var(--line);
+    }
 
+    .meta {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--muted);
+    }
 
+    .tags {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 1.25rem;
+        padding: 0;
+    }
 
+    .content {
+        margin: 0 auto;
+        width: 85%;
+        min-height: 100vh;
+    }
 
+    .content :global(p) {
+        margin-bottom: 0.5rem;
+    }
 
+    .content :global(h1) {
+        color: oklch(from var(--accent) calc(l - 0.15) c h);
+        font-weight: 600;
+        font-size: 2rem;
+    }
+
+    .content :global(h2) {
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: oklch(from var(--accent) calc(l - 0.25) c h);
+    }
+
+    .content :global(h3) {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: oklch(from var(--accent) calc(l - 0.35) c h);
+    }
+
+    .content :global(ul),
+    .content :global(ol) {
+        margin: 0 1.4rem;
+    }
+
+    .content :global(blockquote) {
+        border-left: 1px solid var(--accent-light);
+        padding-left: 1.2rem;
+        font-style: italic;
+        color: var(--muted);
+        margin: 1.2rem 0;
+    }
+
+    .content :global(pre) {
+        padding: 1rem;
+        margin: 1.2rem 0;
+        border: 1px solid var(--line);
+        overflow-x: auto;
+        font-size: 0.8rem;
+        line-height: 1.2;
+    }
+
+    .content :global(pre code) {
+        background: none;
+        padding: 0;
+    }
+
+    .content :global(hr) {
+        border: none;
+        border-top: 2px dashed var(--line);
+        margin: 2rem 0;
+    }
+
+    .content :global(blockquote p) {
+        display: flex;
+        padding: 1rem 0;
+    }
 </style>
