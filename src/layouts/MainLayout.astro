@@ -26,8 +26,22 @@ import "../styles/global.css";
             data-website-id="fbc0eecc-3d97-43d4-9c1b-62b575dd9569"></script>
         <title>{title}</title>
     </head>
-    <body>
-        <slot />
+    <body class="layout">
+        <div class="content">
+            <slot />
+        </div>
         <Footer />
     </body>
 </html>
+
+<style>
+    .layout {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .content {
+        flex: 1;
+        min-height: 100vh;
+    }
+</style>
