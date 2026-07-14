@@ -1,10 +1,27 @@
 ---
 title: "Hello World"
 description: "This is a quick test"
-constellation: ""
-tags: ["hello", "rust"]
+constellation: "Fornax"
+tags: ["hello"]
 date: 2026-06-23
 ---
 
 
-Hello There
+# Heading 1 
+
+
+## Heading 2 
+
+
+### Heading 3 
+
+
+#### Heading 4 
+
+
+##### Heading 5 
+
+
+###### Heading 6 
+
+
