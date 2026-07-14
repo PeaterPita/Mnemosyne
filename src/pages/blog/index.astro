@@ -4,7 +4,6 @@ import MainLayout from "../../layouts/MainLayout.astro";
 import { constellations } from "../../data/constellations";
 import ConstellationList from "../../components/ConstellationList.astro";
 import BlogCard from "../../components/BlogCard.astro";
-import SectionHeader from "../../components/SectionHeader.astro";
 import FilterBar from "../../components/FilterBar.astro";
 
 const blogs = await getCollection("blogs");
@@ -26,14 +25,16 @@ const grouped = constellations.map((constellation) => ({
 
 <MainLayout title="The Archives">
     <main>
-        <a href="/"> &larr; Return to the observatory</a>
+        <div class="header">
+            <a href="/"> &larr; Return to the observatory</a>
 
-        <SectionHeader
-            title="The Archives"
-            kicker=`THE COMPLETE CATALOGUE - ${blogs.length} STARS RECORDED`
-        />
+            <p class="kicker">
+                THE COMPLETE CATALOGUE - {blogs.length} RECORDS
+            </p>
+            <h2 class="title">The Archives</h2>
 
-        <FilterBar {tags} />
+            <FilterBar {tags} />
+        </div>
 
         <div class="grid">
             {
@@ -50,6 +51,35 @@ const grouped = constellations.map((constellation) => ({
 </MainLayout>
 
 <style>
+    .header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+        border: none;
+        border-bottom: 2px dashed var(--line);
+        margin: 1rem 0;
+        padding-bottom: 2rem;
+    }
+
+    .kicker {
+        font-size: 0.7rem;
+        letter-spacing: 0.4em;
+        color: var(--accent);
+        display: flex;
+        gap: 1em;
+    }
+
+    h2 {
+        font-size: clamp(2.2rem, 5vw, 3.4rem);
+        font-weight: 600;
+        color: var(--text);
+        line-height: 1.3;
+        margin-top: 0.6rem;
+    }
+
     .grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(min(400px, 100%), 1fr));
