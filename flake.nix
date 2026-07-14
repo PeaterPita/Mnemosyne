@@ -17,7 +17,7 @@
         version = "0.1.0";
 
         src = ./.;
-        npmDepsHash = "sha256-IWHZZHrh0gKK/evTZy/SWvZ7lqQKMH3ZCjGkiL5MKe0=";
+        npmDepsHash = "sha256-8qT82yTkaV4DQjIPW+CBElLCQv3cLlwcqkZYmVblKBo=";
 
         buildPhase = ''
           npx astro build
