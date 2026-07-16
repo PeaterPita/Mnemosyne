@@ -1,4 +1,8 @@
 
+export interface constellation {
+    name: string;
+    label: string;
+}
 
 
 
