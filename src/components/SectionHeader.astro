@@ -2,9 +2,10 @@
 interface Props {
     kicker: string;
     title: string;
+    description?: string;
 }
 
-const { title, kicker } = Astro.props;
+const { title, kicker, description } = Astro.props;
 ---
 
 <header style="margin-bottom:3.5rem">
@@ -13,6 +14,7 @@ const { title, kicker } = Astro.props;
         <span>{kicker}</span>
     </p>
     <h2>{title}</h2>
+    <p class="description">{description}</p>
 </header>
 
 <style>
@@ -30,5 +32,11 @@ const { title, kicker } = Astro.props;
         color: var(--text);
         line-height: 1.3;
         margin-top: 0.6rem;
+    }
+
+    .description {
+        color: var(--muted);
+        font-style: italic;
+        margin: -2rem 0;
     }
 </style>

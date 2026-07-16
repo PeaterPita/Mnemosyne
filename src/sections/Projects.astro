@@ -1,7 +1,87 @@
 ---
 import SectionHeader from "../components/SectionHeader.astro";
+import { projects } from "../data/projects.ts";
+import { Image } from "astro:assets";
+import Tag from "../components/Tag.astro";
 ---
 
 <section>
-    <SectionHeader kicker="The Observation Deck" title="Ongoing Observations" />
+    <SectionHeader
+        kicker="The Observation Deck"
+        title="Ongoing Observations"
+        description=""
+    />
+
+    <div class="project-grid">
+        {
+            projects.map((project) => (
+                <article class="project-card">
+                    <Image
+                        src={project.image.src}
+                        alt={project.image.alt}
+                        width={200}
+                        height={100}
+                    />
+
+                    <div class="content">
+                        <h3 class="title">{project.name}</h3>
+                        <p class="description">{project.description}</p>
+                        <span class="meta">
+                            {project.tags.map((tag) => (
+                                <Tag content={tag} />
+                            ))}
+                            {project.repo && <a href={project.repo}>G</a>}
+                        </span>
+                    </div>
+                </article>
+            ))
+        }
+    </div>
 </section>
+
+<style>
+    .project-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+
+    .project-card {
+        display: flex;
+        align-items: center;
+        border: solid 1px var(--line);
+        gap: 1.2rem;
+        padding: 1.2rem;
+    }
+
+    .project-card:hover {
+        background: rgb(from var(--accent-light) r g b / 0.1);
+    }
+
+    .project-card:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+
+    .meta {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .title {
+        font-size: 1.5rem;
+        color: var(--text);
+        line-height: 1.25;
+        margin: 0.35rem;
+        font-weight: 600;
+    }
+
+    .description {
+        color: var(--muted);
+        font-size: 0.8rem;
+    }
+
+    .content {
+        flex: 1;
+    }
+</style>
