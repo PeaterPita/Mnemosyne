@@ -2,6 +2,7 @@
 import SectionHeader from "../components/SectionHeader.astro";
 import { projects } from "../data/projects.ts";
 import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
 import Tag from "../components/Tag.astro";
 ---
 
@@ -31,8 +32,12 @@ import Tag from "../components/Tag.astro";
                                 <Tag content={tag} />
                             ))}
                             {project.repo && (
-                                <a href={project.repo} target="_blank">
-                                    G
+                                <a
+                                    href={project.repo}
+                                    class="icon"
+                                    target="_blank"
+                                >
+                                    <Icon name="mdi:github" size={24} />
                                 </a>
                             )}
                         </span>
@@ -65,10 +70,6 @@ import Tag from "../components/Tag.astro";
         padding: 1.2rem;
     }
 
-    .project-card:hover {
-        background: rgb(from var(--accent-light) r g b / 0.1);
-    }
-
     .project-card:nth-child(even) {
         flex-direction: row-reverse;
     }
@@ -77,6 +78,10 @@ import Tag from "../components/Tag.astro";
         display: flex;
         gap: 1rem;
         align-items: center;
+    }
+
+    .icon {
+        display: flex;
     }
 
     .title {

@@ -19,30 +19,14 @@ export interface Project {
 
 
 export const projects = [
-
     {
         name: "Mnemosyne",
-        description: "This very portfolio site",
+        description: "This very portfolio site!",
         repo: "https://github.com/PeaterPita/Mnemosyne",
-        tags: [],
+        tags: ["Astro", "TypeScript"],
         image: {
             src: PLACEHOLDER,
             alt: "PLACEHOLDER"
         }
     },
-
-
-
-
-    {
-        name: "Testing",
-        description: "Hello world this is a description",
-        repo: "https://peaterpita.com",
-        tags: ["Rust"],
-        image: {
-            src: PLACEHOLDER,
-            alt: "PLACEHOLDER",
-        }
-    },
-
 ];
