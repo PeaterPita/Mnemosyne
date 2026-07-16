@@ -13,7 +13,7 @@ import Projects from "../sections/Projects.astro";
 <MainLayout title="The Observatory">
     <main>
         <Hero />
-        <div style="width: 80%; margin: 0 auto; ">
+        <div class="tower">
             <About />
             <Divider />
             <Blogs />
@@ -24,3 +24,10 @@ import Projects from "../sections/Projects.astro";
         </div>
     </main>
 </MainLayout>
+
+<style>
+    .tower {
+        width: 80%;
+        margin: 0 auto;
+    }
+</style>

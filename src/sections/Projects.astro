@@ -30,7 +30,11 @@ import Tag from "../components/Tag.astro";
                             {project.tags.map((tag) => (
                                 <Tag content={tag} />
                             ))}
-                            {project.repo && <a href={project.repo}>G</a>}
+                            {project.repo && (
+                                <a href={project.repo} target="_blank">
+                                    G
+                                </a>
+                            )}
                         </span>
                     </div>
                 </article>
