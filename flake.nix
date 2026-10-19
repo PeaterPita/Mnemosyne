@@ -1,0 +1,38 @@
+{
+  description = "Personal Site Flake";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+  outputs =
+    { self, nixpkgs }:
+    let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs {
+        inherit system;
+      };
+
+    in
+    {
+
+      packages.${system}.default = pkgs.buildNpmPackage {
+        pname = "Mnemosyne";
+        version = "26.10.0";
+
+        src = ./.;
+        npmDepsHash = "sha256-yGhmUwRzxrbKj6YcDKbuM+rSJRbVpz7ot6J7m6oEVJs=";
+
+        buildPhase = ''
+          npx astro build
+        '';
+
+        installPhase = ''
+          cp -r dist $out
+        '';
+      };
+
+      devShells.${system}.default = pkgs.mkShell {
+        packages = with pkgs; [
+          nodejs_24
+        ];
+      };
+    };
+}

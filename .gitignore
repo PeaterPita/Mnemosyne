@@ -1,0 +1,19 @@
+# Env
+.direnv 
+.env 
+.envrc
+
+
+# Build
+.astro/
+result
+dist/ 
+
+
+
+# Dev 
+node_modules/ 
+
+
+
+

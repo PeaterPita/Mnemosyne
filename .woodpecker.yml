@@ -1,0 +1,9 @@
+when:
+  - event: [push, manual]
+    branch: master
+
+steps:
+  - name: deploy
+    image: bash
+    commands:
+      - nix build .#default -o /var/www/Mnemosyne
