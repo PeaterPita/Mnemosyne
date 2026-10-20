@@ -1,0 +1,131 @@
+---
+import Icon from "./Icon.astro";
+
+const pages = [
+    { href: "/", label: "Home" },
+    { href: "/projects", label: "Projects" },
+    { href: "/research", label: "Research" },
+    { href: "/blogs", label: "Blogs" },
+];
+---
+
+<header class="header">
+    <button class="btn menu" aria-label="Menu">
+        <span class="icon-menu">
+            <Icon name="menu-line" size={22} />{" "}
+        </span>
+
+        <span class="icon-close">
+            <Icon name="close-line" size={22} />{" "}
+        </span>
+    </button>
+
+    <nav class="nav">
+        {pages.map((link) => (
+            <a href={link.href}> {link.label} </a>
+        ))}
+    </nav>
+</header>
+
+<style>
+    .header {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .btn {
+        display: grid;
+        place-items: center;
+
+        width: 2.5rem;
+        height: 2.5rem;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        background: none;
+        cursor: pointer;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+        background: color-mix(in srgb, var(--fg) 5%, transparent);
+    }
+
+    .icon-close {
+        display: none;
+    }
+
+    .header[data-open] .icon-menu {
+        display: none;
+    }
+    .header[data-open] .icon-close {
+        display: grid;
+    }
+
+    .nav {
+        flex: 1;
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .nav a {
+        color: var(--muted);
+        text-decoration: none;
+    }
+
+    .nav a:hover {
+        color: var(--fg);
+    }
+
+    .nav {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(-1.5rem);
+        transition: all 0.5s;
+    }
+
+    .header[data-open] .nav {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+    }
+
+    @media (max-width: 1024px) {
+        .nav {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.5rem;
+            background: var(--bg);
+            border-bottom: 1px solid var(--muted);
+            transform: translateY(-0.5rem);
+        }
+
+        .nav a {
+            font-size: 1.25rem;
+        }
+    }
+</style>
+
+<script>
+    function setOpen(open) {
+        const header = document.querySelector(".header");
+
+        header.toggleAttribute("data-open", open);
+    }
+
+    document.addEventListener("click", (evt) => {
+        const target = evt.target;
+        const header = document.querySelector(".header");
+
+        if (target.closest(".menu")) {
+            setOpen(!header.hasAttribute("data-open"));
+        }
+    });
+</script>

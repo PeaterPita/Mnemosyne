@@ -18,7 +18,7 @@
         version = "26.10.0";
 
         src = ./.;
-        npmDepsHash = "sha256-yGhmUwRzxrbKj6YcDKbuM+rSJRbVpz7ot6J7m6oEVJs=";
+        npmDepsHash = "sha256-LGYa4iHOnY2F3ZdPi46GkRUsOSGUX1MR0hLGl50r82s=";
 
         buildPhase = ''
           npx astro build
@@ -32,6 +32,7 @@
       devShells.${system}.default = pkgs.mkShell {
         packages = with pkgs; [
           nodejs_24
+          astro-language-server
         ];
       };
     };

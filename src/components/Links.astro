@@ -1,0 +1,60 @@
+---
+import Icon from "./Icon.astro";
+
+const links = [
+    {
+        href: "https://github.com/Peaterpita",
+        label: "Github",
+        icon: "github-fill",
+    },
+
+    {
+        href: "mailto:contact@peaterpita.com",
+        label: "Contact",
+        icon: "mail-line",
+    },
+
+    {
+        href: "https://discord.com/users/266237298809503754",
+        label: "Discord",
+        icon: "discord-fill",
+    },
+];
+---
+
+<ul class="list">
+    {links.map((link) => (
+        <li>
+            <a href={link.href}>
+                <Icon name={link.icon} size="24" />
+                <span>{link.label}</span>
+            </a>
+        </li>
+    ))}
+</ul>
+
+<style>
+    .list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    @media (min-width: 640px) {
+        .list {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+    }
+
+    a {
+        color: inherit;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        gap: 0.75rem;
+    }
+</style>

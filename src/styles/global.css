@@ -1,0 +1,33 @@
+@import "@fontsource/ibm-plex-mono/300.css";
+@import "@fontsource/ibm-plex-serif/500.css";
+
+
+:root {
+    /* Fonts */
+    --font-body: "IBM Plex Mono", ui-monospace, monospace;
+    --font-title: "IBM Plex Serif", Georgia, serif;
+
+    /* Colors */
+    --bg: #f4f1ea;
+    --fg: #1c1b19;
+    --muted: #6b675e;
+}
+
+body {
+    margin: 0;
+    height: 100dvh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    font-family: var(--font-body);
+
+    background: var(--bg);
+    color: var(--fg);
+}
+
+
+.content {
+    flex: 1;
+    min-height: 0;
+}

@@ -1,0 +1,24 @@
+---
+import "../styles/global.css";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+
+const { title } = Astro.props;
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width" />
+        <title>PeaterPita {title ? `| ${title}` : ""}</title>
+    </head>
+    <body>
+        <Header />
+        <main class="content">
+            <slot />
+        </main>
+        <Footer />
+    </body>
+</html>

@@ -1,0 +1,30 @@
+---
+import ri from "@iconify-json/ri/icons.json";
+
+const { name, size = 16 } = Astro.props;
+
+const icon = ri.icons[name];
+const width = icon.width ?? ri.width ?? size;
+const height = icon.height ?? ri.height ?? size;
+---
+
+<!-- TODO: Replace with Astro-Icon
+Or some other solution. 
+Iconify says: 
+```
+This icon will not display in Safari browser because it does not support path() in CSS.
+Switch to one of components (Vue, Svelte, React, SolidJS) that has Safari fallback.
+See this article.
+https://cyberalien.dev/articles/safari-svg-path/
+```
+-->
+
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox={`0 0 ${width} ${height}`}
+    width={size}
+    height={size}
+    fill="currentColor"
+    araia-hidden="true"
+    set:html={icon.body}
+/>
