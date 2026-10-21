@@ -15,8 +15,7 @@
 
 body {
     margin: 0;
-    height: 100dvh;
-    overflow: hidden;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
 
@@ -30,4 +29,9 @@ body {
 .content {
     flex: 1;
     min-height: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
