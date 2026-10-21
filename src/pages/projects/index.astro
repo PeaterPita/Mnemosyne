@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
+import Empty from "../../components/Empty.astro";
 
 import placeholder from "../../assets/placeholder.webp";
 const all = await getCollection("projects");
@@ -18,7 +19,7 @@ Project [id] pages
 
 <Layout title="Projects">
     {all.length === 0 ? (
-        <h1 class="empty">No Projects yet. Check back soon...</h1>
+        <Empty />
     ) : (
         <section class="projects">
             {featured && (
@@ -59,14 +60,6 @@ Project [id] pages
 </Layout>
 
 <style>
-    /* TODO Move empty to its own component */
-    .empty {
-        max-width: 50vw;
-        margin: auto;
-        color: var(--muted);
-        text-align: center;
-    }
-
     .projects {
         width: 80vw;
         margin-inline: auto;
