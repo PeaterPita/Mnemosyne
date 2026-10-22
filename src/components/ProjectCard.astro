@@ -1,0 +1,88 @@
+---
+import Tag from "../components/Tag.astro";
+import placeholder from "../assets/placeholder.webp";
+
+const { project } = Astro.props;
+import { Image } from "astro:assets";
+import Icon from "../components/Icon.astro";
+---
+
+<article>
+    <a href={`/projects/${project.id}`}>
+        <div class="media">
+            <Image src={project.data.image ?? placeholder} alt="" />
+        </div>
+    </a>
+
+    <div class="content">
+        <div class="links">
+            {project.data.url && (
+                <a href={project.data.url}>
+                    <Icon name="external-link-line" size={24} />
+                </a>
+            )}
+
+            {project.data.repo && (
+                <a href={project.data.repo}>
+                    <Icon name="github-fill" size={24} />
+                </a>
+            )}
+        </div>
+
+        <h2 class="title">
+            <a href={`/projects/${project.id}`}>{project.data.title}</a>
+        </h2>
+        <p>{project.data.description}</p>
+
+        <div class="meta">
+            {project.data.tags.map((tag) => (
+                <Tag {tag} />
+            ))}
+        </div>
+    </div>
+</article>
+
+<style>
+    .media {
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        border-radius: 0.5rem;
+    }
+
+    .media :global(img) {
+        width: 100%;
+        height: 100%;
+    }
+
+    .content {
+        display: flex;
+        position: relative;
+        flex-grow: 1;
+        flex-direction: column;
+    }
+
+    .meta {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    .title {
+        font-family: var(--font-title);
+        padding-right: 2.5rem;
+        margin: 0.4rem 0 0;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .links {
+        position: absolute;
+        right: 0.5rem;
+        top: 0.5rem;
+        display: flex;
+        gap: 0.25rem;
+    }
+</style>
