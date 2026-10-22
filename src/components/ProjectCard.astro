@@ -2,12 +2,12 @@
 import Tag from "../components/Tag.astro";
 import placeholder from "../assets/placeholder.webp";
 
-const { project } = Astro.props;
+const { project, featured = false } = Astro.props;
 import { Image } from "astro:assets";
 import Icon from "../components/Icon.astro";
 ---
 
-<article>
+<article class={`project ${featured ? "featured" : ""}`}>
     <a href={`/projects/${project.id}`}>
         <div class="media">
             <Image src={project.data.image ?? placeholder} alt="" />
@@ -29,6 +29,7 @@ import Icon from "../components/Icon.astro";
             )}
         </div>
 
+        {featured && <p class="feat">Featured Project</p>}
         <h2 class="title">
             <a href={`/projects/${project.id}`}>{project.data.title}</a>
         </h2>
@@ -43,10 +44,27 @@ import Icon from "../components/Icon.astro";
 </article>
 
 <style>
+    .project {
+        display: grid;
+    }
+
+    .project.featured {
+        gap: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid
+            color-mix(in srgb, var(--muted) 18%, transparent);
+    }
+
     .media {
         aspect-ratio: 16 / 9;
         overflow: hidden;
         border-radius: 0.5rem;
+    }
+
+    .feat {
+        margin: 0;
+        text-transform: uppercase;
+        color: var(--muted);
     }
 
     .media :global(img) {
@@ -84,5 +102,16 @@ import Icon from "../components/Icon.astro";
         top: 0.5rem;
         display: flex;
         gap: 0.25rem;
+    }
+
+    @media (min-width: 768px) {
+        .project.featured {
+            grid-template-columns: 1.3fr 1fr;
+        }
+
+        .project.featured .links {
+            top: auto;
+            bottom: 0;
+        }
     }
 </style>
