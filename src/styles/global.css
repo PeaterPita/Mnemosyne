@@ -23,6 +23,10 @@ body {
 
     background: var(--bg);
     color: var(--fg);
+
+
+    cursor: default;
+
 }
 
 
