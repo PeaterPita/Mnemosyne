@@ -13,6 +13,25 @@ const { title } = Astro.props;
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width" />
         <title>PeaterPita {title ? `| ${title}` : ""}</title>
+
+        <script is:inline>
+            (function () {
+                var theme;
+                try {
+                    theme = localStorage.getItem("theme");
+                } catch (err) {
+                    console.log(err);
+                }
+
+                if (!theme) {
+                    theme = matchMedia("(prefers-color-scheme: dark)").matches
+                        ? "dark"
+                        : "light";
+                }
+
+                document.documentElement.dataset.theme = theme;
+            })();
+        </script>
     </head>
     <body>
         <Header />

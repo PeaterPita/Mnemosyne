@@ -25,6 +25,16 @@ const pages = [
             <a href={link.href}> {link.label} </a>
         ))}
     </nav>
+
+    <button class="btn theme" aria-label="Theme">
+        <span class="icon-sun">
+            <Icon name="sun-line" size={22} />{" "}
+        </span>
+
+        <span class="icon-moon">
+            <Icon name="moon-line" size={22} />{" "}
+        </span>
+    </button>
 </header>
 
 <style>
@@ -34,6 +44,7 @@ const pages = [
         align-items: center;
         gap: 1rem;
         padding: 1rem;
+        z-index: 100;
     }
 
     .btn {
@@ -65,6 +76,14 @@ const pages = [
         display: grid;
     }
 
+    :global([data-theme="dark"]) .icon-sun {
+        display: none;
+    }
+
+    :global([data-theme="light"]) .icon-moon {
+        display: none;
+    }
+
     .nav {
         flex: 1;
         display: flex;
@@ -94,6 +113,10 @@ const pages = [
     }
 
     @media (max-width: 1024px) {
+        .header {
+            justify-content: space-between;
+        }
+
         .nav {
             position: absolute;
             top: 100%;
@@ -105,6 +128,7 @@ const pages = [
             background: var(--bg);
             border-bottom: 1px solid var(--muted);
             transform: translateY(-0.5rem);
+            padding: 0 0 1.5rem 0.5rem;
         }
 
         .nav a {
@@ -120,12 +144,27 @@ const pages = [
         header.toggleAttribute("data-open", open);
     }
 
+    function toggleTheme() {
+        const curTheme = document.documentElement.dataset.theme;
+        const newTheme = curTheme === "dark" ? "light" : "dark";
+
+        document.documentElement.dataset.theme = newTheme;
+
+        try {
+            localStorage.setItem("theme", newTheme);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     document.addEventListener("click", (evt) => {
         const target = evt.target;
         const header = document.querySelector(".header");
 
         if (target.closest(".menu")) {
             setOpen(!header.hasAttribute("data-open"));
+        } else if (target.closest(".theme")) {
+            toggleTheme();
         }
     });
 </script>

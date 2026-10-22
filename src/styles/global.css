@@ -11,7 +11,23 @@
     --bg: #f4f1ea;
     --fg: #1c1b19;
     --muted: #6b675e;
+    color-scheme: light;
 }
+
+
+
+
+/* TOOD: Improve colors  
+https://www.vev.design/blog/dark-mode-website-color-palette/
+*/
+:root[data-theme="dark"] {
+    --bg: #1a1a1a;
+    --fg: #f4f1ea;
+    --muted: #9a958a;
+    color-scheme: dark;
+}
+
+
 
 body {
     margin: 0;
@@ -35,7 +51,4 @@ body {
     min-height: 0;
 
     display: flex;
-    /* justify-content: center; */
-    /* align-items: center; */
-
 }
