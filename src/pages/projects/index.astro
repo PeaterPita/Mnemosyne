@@ -21,7 +21,9 @@ Project [id] pages
         <Empty />
     ) : (
         <section class="projects">
-            {featured && <ProjectCard project={featured} featured={true} />}
+            <div class="featured">
+                {featured && <ProjectCard project={featured} featured={true} />}
+            </div>
 
             <ul class="grid">
                 {remainder.map((project) => (
@@ -56,6 +58,13 @@ Project [id] pages
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
+    }
+
+    .featured {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid
+            color-mix(in srgb, var(--muted) 18%, transparent);
     }
 
     .grid {
