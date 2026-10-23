@@ -11,6 +11,8 @@
     --bg: #f4f1ea;
     --fg: #1c1b19;
     --muted: #6b675e;
+
+    --accent: #116c6e;
     color-scheme: light;
 }
 
@@ -24,6 +26,8 @@ https://www.vev.design/blog/dark-mode-website-color-palette/
     --bg: #1a1a1a;
     --fg: #f4f1ea;
     --muted: #9a958a;
+
+    --accent: #6C3BAA;
     color-scheme: dark;
 }
 

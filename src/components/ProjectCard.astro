@@ -7,45 +7,52 @@ import { Image } from "astro:assets";
 import Icon from "../components/Icon.astro";
 ---
 
-<article class={`project ${featured ? "featured" : ""}`}>
-    <a href={`/projects/${project.id}`}>
-        <div class="media">
-            <Image src={project.data.image ?? placeholder} alt="" />
+<div class="wrapper">
+    <article class={`project ${featured ? "featured" : ""}`}>
+        <a href={`/projects/${project.id}`}>
+            <div class="media">
+                <Image src={project.data.image ?? placeholder} alt="" />
+            </div>
+        </a>
+
+        <div class="content">
+            <div class="links">
+                {project.data.url && (
+                    <a href={project.data.url}>
+                        <Icon name="external-link-line" size={24} />
+                    </a>
+                )}
+
+                {project.data.repo && (
+                    <a href={project.data.repo}>
+                        <Icon name="github-fill" size={24} />
+                    </a>
+                )}
+            </div>
+
+            {featured && <p class="feat">Featured Project</p>}
+            <h2 class="title">
+                <a href={`/projects/${project.id}`}>{project.data.title}</a>
+            </h2>
+            <p>{project.data.description}</p>
+
+            <div class="meta">
+                {project.data.tags.map((tag) => (
+                    <Tag {tag} />
+                ))}
+            </div>
         </div>
-    </a>
-
-    <div class="content">
-        <div class="links">
-            {project.data.url && (
-                <a href={project.data.url}>
-                    <Icon name="external-link-line" size={24} />
-                </a>
-            )}
-
-            {project.data.repo && (
-                <a href={project.data.repo}>
-                    <Icon name="github-fill" size={24} />
-                </a>
-            )}
-        </div>
-
-        {featured && <p class="feat">Featured Project</p>}
-        <h2 class="title">
-            <a href={`/projects/${project.id}`}>{project.data.title}</a>
-        </h2>
-        <p>{project.data.description}</p>
-
-        <div class="meta">
-            {project.data.tags.map((tag) => (
-                <Tag {tag} />
-            ))}
-        </div>
-    </div>
-</article>
+    </article>
+</div>
 
 <style>
     .project {
         display: grid;
+        transition: all 0.3s ease;
+    }
+
+    .wrapper:hover .project {
+        transform: translateY(-15px);
     }
 
     .project.featured {
@@ -95,6 +102,10 @@ import Icon from "../components/Icon.astro";
         font-family: var(--font-title);
         padding-right: 2.5rem;
         margin: 0.4rem 0 0;
+    }
+
+    .title:hover {
+        color: var(--accent);
     }
 
     a {

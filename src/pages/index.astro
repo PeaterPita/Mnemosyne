@@ -5,14 +5,17 @@ import Links from "../components/Links.astro";
 
 <Layout>
     <section class="hero">
-        <h1>Hi, I'm PeaterPita</h1>
+        <h1>
+            Hi, I'm <span class="name"> PeaterPita </span>
+        </h1>
 
         <p class="about">
             BSc Computing graduate focused on systems programming, network
             security, and self-hosted infrastructure; A persistent self-directed
-            learner. I build things to be useful!
+            learner.
         </p>
 
+        <p>I build things to be useful</p>
         <Links />
     </section>
 </Layout>
@@ -46,5 +49,9 @@ import Links from "../components/Links.astro";
 
     .about {
         margin: 0;
+    }
+
+    .name {
+        color: var(--accent);
     }
 </style>
