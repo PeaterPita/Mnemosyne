@@ -34,7 +34,7 @@ import Icon from "../components/Icon.astro";
             <h2 class="title">
                 <a href={`/projects/${project.id}`}>{project.data.title}</a>
             </h2>
-            <p>{project.data.description}</p>
+            <p set:html={project.data.description} />
 
             <div class="meta">
                 {project.data.tags.map((tag) => (
